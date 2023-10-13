@@ -11,7 +11,7 @@ def loaddb(filename):
 
     # chargement de notre jeu de données
     import yaml
-    books = yaml.load(open(filename))
+    books = yaml.safe_load(open(filename))
 
     # import des modèles
     from .models import Author, Book
@@ -19,7 +19,7 @@ def loaddb(filename):
     # première passe: création de tous les auteurs
     authors = {}
     for b in books:
-        a = b[" author"]
+        a = b["author"]
         if a not in authors:
             o = Author(name=a)
             db.session.add(o)
