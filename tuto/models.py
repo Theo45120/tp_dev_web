@@ -5,7 +5,7 @@ class Author (db.Model ):
     name = db.Column(db.String(100))
 
     def __repr__ (self ):
-        return self.name
+        return  "<Author (%d) %s>" % (self.id, self.name)
 
     
 class Book(db.Model):
