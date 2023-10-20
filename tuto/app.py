@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_bootstrap import Bootstrap5
+from flask_login import LoginManager
 
 app = Flask(__name__)
 app.config['BOOTSTRAP_SERVE_LOCAL'] = True
@@ -16,3 +17,6 @@ from flask_sqlalchemy import SQLAlchemy
 app.config['SQLALCHEMY_DATABASE_URI'] = (
     'sqlite:///'+mkpath('../myapp.db'))
 db = SQLAlchemy (app)
+
+
+login_manager = LoginManager(app)

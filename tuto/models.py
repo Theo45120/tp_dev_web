@@ -30,3 +30,8 @@ class User(db.Model, UserMixin):
 
 def get_sample():
     return Book.query.all()
+
+from .app import login_manager
+@login_manager.user_loader
+def load_user(username):
+    return User.query.get(username)
