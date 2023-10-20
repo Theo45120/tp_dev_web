@@ -54,3 +54,16 @@ def newuser(username, password):
     u = User(username=username, password=m.hexdigest())
     db.session.add(u)
     db.session.commit()
+
+@app.cli.command()
+@click.argument("username")
+@click.argument("password")
+def passwd(username, password):
+    """Change password user."""
+    from .models import User
+    from hashlib import sha256
+    m = sha256()
+    m.update(password.encode())
+    u = User.query.filter_by(username=username).first()
+    u.password = m.hexdigest()
+    db.session.commit()
